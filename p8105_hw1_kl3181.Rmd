@@ -1,18 +1,47 @@
 ---
 title: "p8105_hw1_kl3181"
+author: "Kelley Lou"
+date: 2020-09-25
 output: html_document
 ---
 
 ## Problem 1
-##### Creating a data frame comprised of a random sample of size 10 from a normal distribution, a logical vector, a character vector length of 10 and a factor vector length of 10 with 3 levels.
-```{r create df}
+Creating a data frame comprised of a random sample of size 10 from a normal distribution, a logical vector, a character vector length of 10 and a factor vector length of 10 with 3 levels.
+```{r}
 library(tidyverse)
-
-prob1 = 
-tibble(
-  samp = rnorm(10),
-  samp_gt_0 = samp > 0,
-  char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
-  factor_vec = factor(c("low", "low", "low", "mod", "mod", "mod", "mod", "high", "high", "high"))
-)
 ```
+
+```{r create_df}
+prob1_df = 
+  tibble(
+    samp = rnorm(10),
+    samp_gt_0 = samp > 0,
+    char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+    factor_vec = factor(c("low", "low", "low", "mod", "mod", "mod", "mod", "high", "high", "high"))
+  )
+```
+
+Take the mean of each variable in my data frame.
+
+```{r mean_pull_var}
+mean(pull(prob1_df, samp))
+mean(pull(prob1_df, samp_gt_0))
+mean(pull(prob1_df, char_vec))
+mean(pull(prob1_df, factor_vec))
+```
+I can take the mean of numbers and logical but not character or factor. 
+
+Now converting the variables into numeric.
+```{r try_numeric, eval=FALSE}
+as.numeric(pull(prob1_df, samp_gt_0))
+as.numeric(pull(prob1_df, char_vec))
+as.numeric(pull(prob1_df, factor_vec))
+```
+When the variables are converted into numeric, the factors levels are converted into numbers. This explains why you cannot take the mean when the levels have not been converted into numbers yet. 
+
+```{r}
+as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
+as.factor(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
+as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)
+```
+Converting the logical into a factor and multiplying the result by the sample results in an error but when the factor is then converted into numeric, then we are able to get a result.
