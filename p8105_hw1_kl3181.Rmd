@@ -50,5 +50,13 @@ Converting the logical into a factor and multiplying the result by the sample re
 ## Problem 2
 ```{r}
 data("penguins", package = "palmerpenguins")
+mean(as.numeric(pull(penguins, flipper_length_mm)), na.rm = TRUE)
 ```
-The penguins data set has 8 variables, including species, island, bill length, bill depth, flipper length, body mass, sex and study year. There are `r nrow(penguins)` rows and `r ncol(penguins)` columns of data. The mean flipper length is `r mean(penguins$flipper_length_mm)`. 
+The penguins data set has 8 variables, including species, island, bill length, bill depth, flipper length, body mass, sex and study year. There are `r nrow(penguins)` rows and `r ncol(penguins)` columns of data. A key variable is the species, which consists of three "levels" including Adélie, Chinstrap and Gentoo. The bill length (mm), bill depth (mm), flipper length (mm) and body mass (g) are all numeric values. The mean flipper length is 200.9152 mm. 
+
+Making a scatterplot of flipper length on the y axis and bill length on the x axis. 
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+ggsave("scatter_plot.pdf", height = 6, width = 4)
+```
+
