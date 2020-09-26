@@ -391,9 +391,9 @@ summary {
   )</code></pre>
 <p>Take the mean of each variable in my data frame.</p>
 <pre class="r"><code>mean(pull(prob1_df, samp))</code></pre>
-<pre><code>## [1] 0.2850128</code></pre>
+<pre><code>## [1] 0.4144322</code></pre>
 <pre class="r"><code>mean(pull(prob1_df, samp_gt_0))</code></pre>
-<pre><code>## [1] 0.5</code></pre>
+<pre><code>## [1] 0.8</code></pre>
 <pre class="r"><code>mean(pull(prob1_df, char_vec))</code></pre>
 <pre><code>## Warning in mean.default(pull(prob1_df, char_vec)): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -409,16 +409,21 @@ as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))</code></pre>
 <p>When the variables are converted into numeric, the factors levels are converted into numbers. This explains why you cannot take the mean when the levels have not been converted into numbers yet.</p>
 <pre class="r"><code>as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)</code></pre>
-<pre><code>##  [1] 1.6281829 1.0375198 0.8596321 0.0000000 0.0000000 0.0000000 1.7221809
-##  [8] 0.0000000 0.6596072 0.0000000</code></pre>
+<pre><code>##  [1] 0.9375636 0.5660947 0.6688159 0.0000000 0.6729609 0.1577723 0.0000000
+##  [8] 0.6269324 0.8205725 0.5097914</code></pre>
 <pre class="r"><code>as.factor(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)</code></pre>
 <pre><code>## Warning in Ops.factor(as.factor(pull(prob1_df, samp_gt_0)), pull(prob1_df, : &#39;*&#39;
 ## not meaningful for factors</code></pre>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
 <pre class="r"><code>as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * pull(prob1_df, samp)</code></pre>
-<pre><code>##  [1]  3.25636572  2.07503962  1.71926424 -1.46478217 -0.73254451 -0.47829180
-##  [7]  3.44436174 -0.32287421  1.31921449 -0.05850242</code></pre>
+<pre><code>##  [1]  1.8751273  1.1321894  1.3376318 -0.1686432  1.3459218  0.3155445
+##  [7] -0.6475389  1.2538648  1.6411450  1.0195828</code></pre>
 <p>Converting the logical into a factor and multiplying the result by the sample results in an error but when the factor is then converted into numeric, then we are able to get a result.</p>
+</div>
+<div id="problem-2" class="section level2">
+<h2>Problem 2</h2>
+<pre class="r"><code>data(&quot;penguins&quot;, package = &quot;palmerpenguins&quot;)</code></pre>
+<p>The penguins data set has 8 variables, including species, island, bill length, bill depth, flipper length, body mass, sex and study year. There are 344 rows and 8 columns of data. The mean flipper length is NA.</p>
 </div>
 
 
