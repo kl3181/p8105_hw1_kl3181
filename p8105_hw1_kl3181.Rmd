@@ -2,7 +2,7 @@
 title: "p8105_hw1_kl3181"
 author: "Kelley Lou"
 date: 2020-09-25
-output: html_document
+output: github_document
 ---
 
 ## Problem 1
